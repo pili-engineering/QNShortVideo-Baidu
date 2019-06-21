@@ -1,0 +1,6 @@
+framework module ARSDKProOpenSDK {
+  umbrella header "ARSDKProOpenSDK.h"
+
+  export *
+  module * { export * }
+}

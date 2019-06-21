@@ -1,0 +1,20 @@
+{
+    "beautyConfigs": {
+        "whiten":{
+            "defaultValue":0.4
+        },
+        "eye":{
+            "defaultValue":0.35
+        },
+        "skin":{
+            "defaultValue":0.4
+        },
+        "thinFace":{
+            "defaultValue":0.6
+        }
+    },
+    "filterConfigs": {
+        "defaultValue": 0.8,
+        "assetDir": "/Filter/ar"
+  }
+}
