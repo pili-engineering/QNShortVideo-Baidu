@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
+    - AFNetworking/NSURLSession
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -17,6 +32,7 @@ PODS:
     - HappyDNS (~> 0.3)
 
 DEPENDENCIES:
+  - AFNetworking (= 3.0.4)
   - Crashlytics (= 3.8.4)
   - Fabric (= 1.6.11)
   - FLAnimatedImage (= 1.0.12)
@@ -26,6 +42,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AFNetworking
     - Crashlytics
     - Fabric
     - FLAnimatedImage
@@ -35,6 +52,7 @@ SPEC REPOS:
     - Qiniu
 
 SPEC CHECKSUMS:
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -43,6 +61,6 @@ SPEC CHECKSUMS:
   PLShortVideoKit: 03a936d7d23d5c437aad4dee93d57f7a554aeb48
   Qiniu: 909b408ee489ea54827e9717be90b94bc9dfbc48
 
-PODFILE CHECKSUM: 92a958b1caee50157fd9d86ccd169e37f07e1998
+PODFILE CHECKSUM: 00673770830cf319dbd93b5888f50053afb92e45
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.2

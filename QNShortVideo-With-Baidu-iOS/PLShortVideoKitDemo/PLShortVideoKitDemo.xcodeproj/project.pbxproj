@@ -204,7 +204,6 @@
 		BC281BF8225212C700CC7584 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC281BF0225212C700CC7584 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC570E552254A4DB008FF508 /* PLSGifStickerBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC570E542254A4DB008FF508 /* PLSGifStickerBar.m */; };
 		BC570E692255D55A008FF508 /* gifSticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC570E682255D55A008FF508 /* gifSticker.bundle */; };
-		BC5FB38722A7674F006714D0 /* music.flac in Resources */ = {isa = PBXBuildFile; fileRef = BC5FB38622A7674E006714D0 /* music.flac */; };
 		BC5FB39922B1ECBD006714D0 /* dlModels.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC5FB39522B1ECBD006714D0 /* dlModels.bundle */; };
 		BC5FB39A22B1ECBD006714D0 /* ARSDKProOpenSDK.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = BC5FB39722B1ECBD006714D0 /* ARSDKProOpenSDK.framework.dSYM */; };
 		BC7DDC8222BCB6A500FEB6A0 /* DARDemoDebugInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC7DDC7022BCB6A500FEB6A0 /* DARDemoDebugInfoView.m */; };
@@ -913,7 +912,6 @@
 		BC570E532254A4DB008FF508 /* PLSGifStickerBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLSGifStickerBar.h; sourceTree = "<group>"; };
 		BC570E542254A4DB008FF508 /* PLSGifStickerBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLSGifStickerBar.m; sourceTree = "<group>"; };
 		BC570E682255D55A008FF508 /* gifSticker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = gifSticker.bundle; sourceTree = "<group>"; };
-		BC5FB38622A7674E006714D0 /* music.flac */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.flac; path = ../../../../../ahxmusic/music.flac; sourceTree = "<group>"; };
 		BC5FB39522B1ECBD006714D0 /* dlModels.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = dlModels.bundle; sourceTree = "<group>"; };
 		BC5FB39722B1ECBD006714D0 /* ARSDKProOpenSDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ARSDKProOpenSDK.framework.dSYM; sourceTree = "<group>"; };
 		BC5FB39822B1ECBD006714D0 /* ARSDKProOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ARSDKProOpenSDK.framework; sourceTree = "<group>"; };
@@ -1569,7 +1567,6 @@
 				0AF33BFF1F7180D200CCFB42 /* mv3.png */,
 				0AF33C001F7180D200CCFB42 /* mv4.png */,
 				0AF33C011F7180D200CCFB42 /* plsMVs.json */,
-				BC5FB38622A7674E006714D0 /* music.flac */,
 				0AD98DBD20316E33006551EC /* video_draft_test.mp4 */,
 				0A1DDC7E20BBE0CA00DF53B6 /* rotate_background.png */,
 				0A1DDC8020BBE0CA00DF53B6 /* rotate_image.png */,
@@ -3466,7 +3463,6 @@
 				BC7DDDE822BCB6C500FEB6A0 /* BaiduAR_弹出框_箭头_向左@2x.png in Resources */,
 				BCDB524122B88E340071FA37 /* Witch@3x.png in Resources */,
 				BC7DDD9C22BCB6C500FEB6A0 /* BaiduAR_灯_灭@3x.png in Resources */,
-				BC5FB38722A7674F006714D0 /* music.flac in Resources */,
 				C3A791401FA076E000C3F2D6 /* back_white.png in Resources */,
 				BCDB522C22B88E340071FA37 /* opera@2x.png in Resources */,
 				BC7DDDAB22BCB6C500FEB6A0 /* BaiduAR_case下载标示_失败@3x.png in Resources */,
