@@ -201,6 +201,8 @@
 		76ECAC5021880EFC00EA153E /* ImageVideoMixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76ECAC4F21880EFC00EA153E /* ImageVideoMixViewController.m */; };
 		9343A8C01F66763A007213BD /* Time_Machine_No_Reverser.png in Resources */ = {isa = PBXBuildFile; fileRef = 9343A8BE1F66763A007213BD /* Time_Machine_No_Reverser.png */; };
 		9343A8C11F66763A007213BD /* Time_Machine_Reverser.png in Resources */ = {isa = PBXBuildFile; fileRef = 9343A8BF1F66763A007213BD /* Time_Machine_Reverser.png */; };
+		AA7CB58422CB0F100013D55B /* face_decals.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA7CB58322CB0F100013D55B /* face_decals.plist */; };
+		AA7CB58622CB0F200013D55B /* BaiduAR.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA7CB58522CB0F200013D55B /* BaiduAR.bundle */; };
 		BC281BF8225212C700CC7584 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC281BF0225212C700CC7584 /* ReplayKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		BC570E552254A4DB008FF508 /* PLSGifStickerBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC570E542254A4DB008FF508 /* PLSGifStickerBar.m */; };
 		BC570E692255D55A008FF508 /* gifSticker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC570E682255D55A008FF508 /* gifSticker.bundle */; };
@@ -908,6 +910,8 @@
 		85B60FAE619932ED649E6840 /* Pods-PLShortVideoKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PLShortVideoKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PLShortVideoKitDemo/Pods-PLShortVideoKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9343A8BE1F66763A007213BD /* Time_Machine_No_Reverser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Time_Machine_No_Reverser.png; path = images/Time_Machine_No_Reverser.png; sourceTree = "<group>"; };
 		9343A8BF1F66763A007213BD /* Time_Machine_Reverser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Time_Machine_Reverser.png; path = images/Time_Machine_Reverser.png; sourceTree = "<group>"; };
+		AA7CB58322CB0F100013D55B /* face_decals.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = face_decals.plist; sourceTree = "<group>"; };
+		AA7CB58522CB0F200013D55B /* BaiduAR.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BaiduAR.bundle; sourceTree = "<group>"; };
 		BC281BF0225212C700CC7584 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		BC570E532254A4DB008FF508 /* PLSGifStickerBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLSGifStickerBar.h; sourceTree = "<group>"; };
 		BC570E542254A4DB008FF508 /* PLSGifStickerBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLSGifStickerBar.m; sourceTree = "<group>"; };
@@ -1893,15 +1897,17 @@
 		BC5FB39422B1ECBD006714D0 /* BaiduAR */ = {
 			isa = PBXGroup;
 			children = (
-				BC7DDE4922BCB72900FEB6A0 /* ThridParty */,
 				BC7DDE4722BCB6F800FEB6A0 /* BaiduAR.xcassets */,
-				BC7DDE3722BCB6D700FEB6A0 /* Utils */,
+				AA7CB58522CB0F200013D55B /* BaiduAR.bundle */,
 				BC7DDC9222BCB6C400FEB6A0 /* BaiduARImages */,
+				BC5FB39522B1ECBD006714D0 /* dlModels.bundle */,
+				AA7CB58322CB0F100013D55B /* face_decals.plist */,
+				BCDB511422B88E340071FA37 /* face_resource */,
 				BC7DDC8B22BCB6B500FEB6A0 /* FaceAlgoModelAdjust */,
 				BC7DDC6F22BCB6A500FEB6A0 /* Helper */,
-				BCDB511422B88E340071FA37 /* face_resource */,
-				BC5FB39522B1ECBD006714D0 /* dlModels.bundle */,
 				BC5FB39622B1ECBD006714D0 /* SDK */,
+				BC7DDE4922BCB72900FEB6A0 /* ThridParty */,
+				BC7DDE3722BCB6D700FEB6A0 /* Utils */,
 			);
 			path = BaiduAR;
 			sourceTree = "<group>";
@@ -3420,6 +3426,7 @@
 				BCDB51E522B88E340071FA37 /* youzheng.png in Resources */,
 				BC7DDDA622BCB6C500FEB6A0 /* BaiduAR_渐变_底部@2x.png in Resources */,
 				0A9CB4EC1EF042FB00EABA76 /* btn_close_sound@2x.png in Resources */,
+				AA7CB58422CB0F100013D55B /* face_decals.plist in Resources */,
 				BC7DDE0322BCB6C500FEB6A0 /* BaiduAR_Face_请挑眉@3x.png in Resources */,
 				BC7DDDF622BCB6C500FEB6A0 /* BaiduAR_顶部工具条-更多@2x.png in Resources */,
 				BCDB51D522B88E340071FA37 /* 磨皮_未选中@3x.png in Resources */,
@@ -3757,6 +3764,7 @@
 				BCDB51D822B88E340071FA37 /* 瘦脸_选中@3x.png in Resources */,
 				BCDB51C622B88E340071FA37 /* 都市@3x.png in Resources */,
 				BCDB523B22B88E340071FA37 /* Gypsy_V08.0002_device@3x.png in Resources */,
+				AA7CB58622CB0F200013D55B /* BaiduAR.bundle in Resources */,
 				BCDB525422B88E340071FA37 /* 机械战警@3x.png in Resources */,
 				BC7DDE2A22BCB6C500FEB6A0 /* BaiduAR_case加载框@2x.png in Resources */,
 				0A1DDC8120BBE0CB00DF53B6 /* rotate_background.png in Resources */,
