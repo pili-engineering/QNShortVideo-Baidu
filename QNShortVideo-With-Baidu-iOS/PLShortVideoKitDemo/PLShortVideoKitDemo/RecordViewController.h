@@ -17,6 +17,5 @@ typedef void(^BARFaceBVCDisappear)(void);
 @property (nonatomic, copy) NSDictionary *faceAlgoModelDic;
 @property (nonatomic, assign) BOOL autoInOutAR;
 @property (nonatomic, copy) BARFaceBVCDisappear disappearBlock;
-@property (nonatomic, assign) AVCaptureVideoOrientation videoOrientation;
 @property (nonatomic, assign) BOOL cameraToAR;
 @end

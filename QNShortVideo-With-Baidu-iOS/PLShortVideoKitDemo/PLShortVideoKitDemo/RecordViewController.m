@@ -47,8 +47,8 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 //@property (nonatomic, strong) AVSampleBufferDisplayLayer *bufferLayer;
 
 /** AR */
-@property (nonatomic,strong) BARMainController *arController;//AR控制器
-@property (nonatomic, strong) BARARKitModule *arkitModule;//ARKit相机
+@property (nonatomic, strong) BARMainController *arController; //AR控制器
+@property (nonatomic, strong) BARARKitModule *arkitModule;     //ARKit相机
 
 /** 人脸 */
 @property (nonatomic, assign) BOOL isFirstShowDecal;
@@ -56,7 +56,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 @property (nonatomic, assign) BOOL isFaceAssetsLoaded;
 @property (nonatomic, assign) BOOL isFaceTrackLoadingSucceed;
 @property (nonatomic, assign) BOOL isFaceTrackingSucceed;
-//@property(nonatomic, assign) NSUInteger frameReadyCount;
 @property (nonatomic, strong) NSMutableDictionary *faceBeautyLastValueDic;
 @property (nonatomic, assign) CGFloat filterLastValue;
 @property (nonatomic, copy) NSString *currentTrigger;
@@ -236,9 +235,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 }
 
 - (void)cameraAuthorizedFinished{
-    if (self.cameraToAR) {
-        self.videoOrientation = AVCaptureVideoOrientationPortrait;
-    }
     [self setupARController];//设置AR控制器
 //    #error 设置申请的APPID、APIKey https://dumix.baidu.com/dumixar
     [BARSDKPro setAppID:@"25" APIKey:@"e0f9dd03f6ba90db7ef3582d2df1d496" andSecretKey:@""];//SecretKey可选
@@ -274,13 +270,7 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 
 - (void)applicationWillResignActive:(NSNotification *)notification {
     [self pauseAR];
-    
-    //切到后台或者锁屏，闪光灯强制关闭
-//    if ([self.renderVC lightSwitchOn]) {
-//        [self.baseUIView setLightSwitchBtnOn:NO];
-//        [self.renderVC openLightSwitch:NO];
-//    }
-//
+
     if (self.shortVideoRecorder.isTorchOn) {
         [self.shortVideoRecorder setTorchOn:NO];
     }
@@ -294,11 +284,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 
 - (void)applicationDidEnterBackground:(NSNotification *)notification {
     [self pauseAR];
-    //切到后台或者锁屏，闪光灯强制关闭
-//    if ([self.renderVC lightSwitchOn]) {
-//        [self.baseUIView setLightSwitchBtnOn:NO];
-//        [self.renderVC openLightSwitch:NO];
-//    }
     
     if ([self.shortVideoRecorder isTorchOn]) {
         [self.shortVideoRecorder setTorchOn:NO];
@@ -327,7 +312,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 
 - (void)loadFaceData {
     self.isFirstShowDecal = YES;
-    //self.frameReadyCount = 0;
     self.darFaceAlgoModleParse = [[DarFaceAlgoModleParse alloc] init];
     self.faceBeautyLastValueDic = [NSMutableDictionary dictionary];
     __weak typeof(self) weakSelf = self;
@@ -377,15 +361,8 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     self.arController = [[BARMainController alloc] initARWithCameraSize:self.videoConfiguration.videoSize previewSize:self.videoConfiguration.videoSize];
     [self.arController setAlgorithmModelsPath:[[NSBundle mainBundle] pathForResource:@"dlModels" ofType:@"bundle"]];
     
-    int position = self.videoConfiguration.position == AVCaptureDevicePositionBack ? 0 : 1;
-    BOOL mirror = YES;
-    if (0 == position) {
-        mirror = !self.videoConfiguration.previewMirrorRearFacing;
-    } else {
-        mirror = !self.videoConfiguration.previewMirrorFrontFacing;
-    }
-    [self.arController setDevicePosition:position needArMirrorBuffer:mirror];
-    [self.arController setVideoOrientation:self.videoOrientation];
+    [self.arController setDevicePosition:[self devicePosition] needArMirrorBuffer:[self demoNeedARMirrorBuffer]];
+    [self.arController setVideoOrientation:self.videoConfiguration.videoOrientation];
     
     if (SAMPLE_BUffER_LAYER) {
         [self.arController setPipeline:BARPipelineFramebuffer];
@@ -396,28 +373,15 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
                 CFRelease(weakSelf.lastARSample);
                 weakSelf.lastARSample = NULL;
             }
-            weakSelf.lastARSample = CFRetain(sampleBuffer);
+            weakSelf.lastARSample = sampleBuffer;
+            CFRetain(weakSelf.lastARSample);
 //            [weakSelf.renderVC updateRenderSampleBuffer:sampleBuffer];
             
             NSDictionary* attachmentWithTime = (NSDictionary*)extraData;
             double beginTime = [attachmentWithTime[@"startTime"] doubleValue];
-            double intervalTime = CFAbsoluteTimeGetCurrent() - weakSelf.m_lastRenderTime;
             double processIntervalTime = CFAbsoluteTimeGetCurrent() - beginTime;
             NSString *frameTimeInfo = [NSString stringWithFormat:@"每帧处理时长 %.1f",processIntervalTime*1000];
-            
-            //-------------send 1 per 5 times-------------//
-            static NSUInteger count = 0;
-            static double result = 0;
-            count++;
-            
-            result += (intervalTime*1000);
-            if(count%5 ==0){
-                double showNumber = 1000.0/(result/5);
-                NSString *framePerSecond = [NSString stringWithFormat:@"帧率 %.1f", showNumber ];
-                //[[NSNotificationCenter defaultCenter] postNotificationName:@"DEMO_TIME_EVERY_FRAME" object:framePerSecond];
-                count = 0;
-                result = 0;
-            }
+//            NSLog(@"setupARController - %@", frameTimeInfo);
             weakSelf.m_lastRenderTime = CFAbsoluteTimeGetCurrent();
         }];
     };
@@ -652,13 +616,11 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
         }
         // 人脸对焦
         [weakSelf autoFocusAtFace:facePoints];
-//        weakSelf.renderVC.isTrackingSucceed = isTracking;
     }];
     
     //每次算法识别到人脸的表情
     [self.arController setFaceTriggerListLogBlock:^(NSArray *triggerList) {
         [triggerList enumerateObjectsUsingBlock:^(NSString *triggerStr, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [weakSelf.demoInfoView updateTriggerInfo:triggerStr];
             NSArray *array = [triggerStr componentsSeparatedByString:@":"];
             if(array.count==2){
                 if ([weakSelf.currentTrigger containsString:array[0]]) {
@@ -691,19 +653,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 }
 
 - (void)setupARView {
-//    NSString *deviceInfo = [BARUIDevice barPlatformString];
-//    BARDeviceType deviceType = [self getDeviceType:deviceInfo];
-    
-//    self.renderVC = [[DARRenderViewController alloc] init];
-//    self.renderVC.deviceType = deviceType;
-//    self.renderVC.isInitCamera = self.cameraToAR;
-//    self.renderVC.aspect = [UIScreen mainScreen].bounds.size.height/[UIScreen mainScreen].bounds.size.width;
-//    self.renderVC.dataSource = self;
-//    [self addChildViewController:self.renderVC];
-//    [self.replacedView addSubview:self.renderVC.view];
-//    self.renderVC.view.backgroundColor = [UIColor clearColor];
-//    [self.renderVC didMoveToParentViewController:self];
-//    [self.renderVC manualAdjustFocusAtPoint:CGPointMake(0.5, 0.5)];
     [self.shortVideoRecorder.previewView removeFromSuperview];
     [self.replacedView addSubview:self.shortVideoRecorder.previewView];
 }
@@ -761,11 +710,8 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     }
     self.arType = [NSString stringWithFormat:@"%i",arType];
     if (kBARTypeLocalSameSearch == arType) {
-        
     } else if (kBARTypeCloudSameSearch == arType) {
-        
     } else if (kBARTypeARKit == arType) {
-        [self startARKit];
     } else {
         [self start:nil];
     }
@@ -777,33 +723,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     
     if(kBARTypeFace == self.arType.integerValue){
         return;
-    }
-    
-//    if (!SAMPLE_BUffER_LAYER) {
-//        if([[self currentRenderVC] videoPreviewView]){
-//            [[self currentRenderVC] videoPreviewView].enabled = YES;
-//            [self.arController setTargetView:[[self currentRenderVC] videoPreviewView]];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                if ([[self currentRenderVC] isKindOfClass:[BARARKitCameraRenderViewController class]]) {
-//                    [[self currentRenderVC] changeToARCamera];
-//                }else {
-//                    [[self currentRenderVC] changeToARCamera];
-//                }
-//            });
-//        }
-//    }
-}
-
-#pragma mark - ARKit < --- > AR
-
-- (void)startARKit {
-    [self.arController startAR];
-    if(self.arkitModule.arRenderWithCameraVC.videoPreviewView){
-        self.arkitModule.arRenderWithCameraVC.videoPreviewView.enabled = YES;
-        [self.arController setTargetView:self.arkitModule.arRenderWithCameraVC.videoPreviewView];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[self currentRenderVC] changeToARCamera];
-        });
     }
 }
 
@@ -938,8 +857,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.baseUIView.undetectedFaceImgView.hidden = YES;
         self.currentTrigger = nil;
-//        self.baseUIView.faceAlertImgView.image = nil;
-//        self.baseUIView.faceAlertImgView.hidden = YES;
         self.baseUIView.triggerLabel.hidden = YES;
     });
 }
@@ -981,15 +898,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     [[BARAlert sharedInstance] showToastViewPortraitWithTime:1 title:nil message:BARNSLocalizedString(@"bar_tip_video_too_short_alert") dismissComplete:^{
         
     }];
-}
-
-- (id)currentRenderVC {
-//    if (kBARTypeARKit == [self.arType integerValue]) {
-//        return self.arkitModule.arRenderWithCameraVC;
-//    }else {
-//        return self.renderVC;
-//    }
-    return nil;
 }
 
 - (void)resetlightStatus {
@@ -1138,8 +1046,6 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 - (void)closeARView {
     [self stopAR];
     [self dismissViewControllerAnimated:YES completion:^{
-//        [self.renderVC stopCapture];
-//        [self.renderVC removeContaintView];
         [self.shortVideoRecorder stopCaptureSession];
     }];
 }
@@ -1221,10 +1127,38 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     [self.baseUIView setLightSwitchBtnOn:self.shortVideoRecorder.isTorchOn];
 }
 
+- (int)devicePosition {
+    if (self.shortVideoRecorder.captureDevicePosition == AVCaptureDevicePositionBack) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+- (BOOL)demoNeedARMirrorBuffer{
+    if (self.shortVideoRecorder.videoOrientation == AVCaptureVideoOrientationLandscapeLeft) {
+        if(self.devicePosition == 1) {
+            return YES;
+        } else{
+            return NO;
+        }
+    }
+    if (self.devicePosition == 1) {
+        if (self.shortVideoRecorder.previewMirrorFrontFacing) {
+            return NO;
+        } else{
+            return YES;
+        }
+    }
+    return NO;
+}
 
 //相机前后摄像头切换
 - (void)cameraSwitchBtnClick {
     [self pauseAR];
+
+    [self.arController setDevicePosition:[self devicePosition] needArMirrorBuffer:[self demoNeedARMirrorBuffer]];
+    
     [self.shortVideoRecorder toggleCamera:^(BOOL isFinish) {
         [self resumeAR];
     }];
@@ -1429,7 +1363,7 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     [self presentViewController:alert animated:YES completion:NULL];
 }
 
-#pragma mark -- PLShortVideoRecorderDelegate
+#pragma mark - PLShortVideoRecorderDelegate
 
 // 摄像头鉴权的回调
 - (void)shortVideoRecorder:(PLShortVideoRecorder *__nonnull)recorder didGetCameraAuthorizationStatus:(PLSAuthorizationStatus)status {
@@ -1475,7 +1409,12 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     [self.arController updateSampleBuffer:newSampleBuffer];
     CFRelease(newSampleBuffer);
     if (self.lastARSample) {
-        return CMSampleBufferGetImageBuffer(self.lastARSample);
+        // 实现预览效果不断设置Image
+        CVImageBufferRef cvImageBufferRef = CMSampleBufferGetImageBuffer(self.lastARSample);
+        // 转换类型
+        CVPixelBufferRef cvPixelBufferRef = cvImageBufferRef;
+        return cvPixelBufferRef;
+//        return CMSampleBufferGetImageBuffer(self.lastARSample);
     } else {
         return nil;
     }
