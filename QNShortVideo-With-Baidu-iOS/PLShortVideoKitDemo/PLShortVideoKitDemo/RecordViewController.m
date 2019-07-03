@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 
 
 @property (assign, nonatomic) CMSampleBufferRef lastARSample;
-
+@property (nonatomic, assign) BOOL roating;
 @property (strong, nonatomic) BARGestureView *gestureView;
 
 // ==== 七牛 =====
@@ -915,6 +915,8 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
             [self lightSwitchButtonClicked];
             break;
         case BARClickActionCameraSwitch:
+            NSLog(@"BARClickActionCameraSwitch - %ld ", (long)self.videoConfiguration.videoOrientation);
+
             [self cameraSwitchBtnClick];
             break;
         case BARClickActionScreenshot:
@@ -1136,7 +1138,7 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
 }
 
 - (BOOL)demoNeedARMirrorBuffer{
-    if (self.shortVideoRecorder.videoOrientation == AVCaptureVideoOrientationLandscapeLeft) {
+    if (self.videoConfiguration.videoOrientation == AVCaptureVideoOrientationLandscapeLeft) {
         if(self.devicePosition == 1) {
             return YES;
         } else{
@@ -1144,7 +1146,7 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
         }
     }
     if (self.devicePosition == 1) {
-        if (self.shortVideoRecorder.previewMirrorFrontFacing) {
+        if (self.videoConfiguration.previewMirrorFrontFacing) {
             return NO;
         } else{
             return YES;
@@ -1153,39 +1155,26 @@ typedef NS_ENUM(NSUInteger, BARDeviceType) {
     return NO;
 }
 
+- (void)rotateCamera {
+    if (self.roating) {
+        return;
+    }
+    self.roating = YES;
+    if (self.shortVideoRecorder.captureDevicePosition == AVCaptureDevicePositionBack) {
+        self.shortVideoRecorder.captureDevicePosition = AVCaptureDevicePositionFront;
+    } else {
+        self.shortVideoRecorder.captureDevicePosition = AVCaptureDevicePositionBack;
+    }
+    self.roating = NO;
+}
+
 //相机前后摄像头切换
 - (void)cameraSwitchBtnClick {
     [self pauseAR];
-
+    // AR 模型以后置摄像生效，当当前为前置摄像时，需转换成后置摄像
+    [self rotateCamera];
     [self.arController setDevicePosition:[self devicePosition] needArMirrorBuffer:[self demoNeedARMirrorBuffer]];
-    
-    [self.shortVideoRecorder toggleCamera:^(BOOL isFinish) {
-        [self resumeAR];
-    }];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [self.renderVC pauseCapture];
-//        [self.renderVC rotateCamera];
-//        BOOL position = [self.renderVC devicePosition];
-//
-//        [self.arController setDevicePosition:position needArMirrorBuffer:[self.renderVC demoNeedARMirrorBuffer]];
-//
-//        __weak typeof(self)weakSelf = self;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            if (1 == position) {//前置
-//                [weakSelf.baseUIView setLightSwitchBtnOn:NO];
-//                weakSelf.baseUIView.lightSwitchBtn.hidden = YES;
-//            }else {
-//                weakSelf.baseUIView.lightSwitchBtn.hidden = NO;
-//            }
-//
-//        });
-//
-//        [self.arController sendMsgToLuaWithMapData:@{@"id":[NSNumber numberWithInteger:10200],
-//                                                     @"front_camera": [NSNumber numberWithInteger:[self.renderVC devicePosition]]}];
-//
-//        [self.renderVC resumeCapture];
-//        [self resumeAR];
-//    });
+    [self resumeAR];
 }
 
 #pragma mark - DARRenderViewControllerDataSource  // hera 未遵守代理

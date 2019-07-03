@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.1.0</string>
 	<key>CFBundleVersion</key>
-	<string>2.1.0.git-2019-07-03-557172a</string>
+	<string>2.1.0.git-2019-07-03-8a4cefb</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
