@@ -1,0 +1,22 @@
+{
+  "low":[
+    "iPhone 5s",
+    "iPhone 6",
+    "iPhone 6plus",
+    "iPhone SE"
+  ],
+  "medium":[
+    "iPhone 6s",
+    "iPhone 6splus",
+    "iPhone 7",
+    "iPhone 7plus"
+  ],
+  "high":[
+    "iPhone 8",
+    "iPhone 8plus",
+    "iPhone X",
+    "iPhone XS",
+    "iPhone XR",
+    "iPhone XSMax"
+  ]
+}

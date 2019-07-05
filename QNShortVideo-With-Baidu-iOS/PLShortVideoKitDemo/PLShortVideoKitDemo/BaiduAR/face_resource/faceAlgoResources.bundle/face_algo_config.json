@@ -1,0 +1,30 @@
+{
+    
+    "detect_modle":"detect/enc_detect_int16.lite.bin",
+    
+    "imbin":"imbin/skeletonModel_v1.7.3.bin",
+
+    "lite_device_modle":{
+        "track_param_0":"track/enc_angle_mv8_int16.lite.bin",
+        "track_param_1":"track/enc_mv6s_95pts_int16.lite.bin",
+        "track_param_2":"track/enc_eye_int16.lite.bin",
+        "trackingSmoothAlpha":"0.03",
+        "trackingSmoothThreshold":"1",
+    },
+    
+    "medium_device_modle":{
+        "track_param_0":"track/enc_angle_mv8_int16.lite.bin",
+        "track_param_1":"track/enc_mv3s_95pts_int16.lite.bin",
+        "track_param_2":"track/enc_eye_int16.lite.bin",
+        "trackingSmoothAlpha":"0.03",
+        "trackingSmoothThreshold":"1",
+    },
+    
+    "heavy_device_modle":{
+        "track_param_0":"track/enc_angle_mv8_int16.lite.bin",
+        "track_param_1":"track/enc_mv3s_95pts_int16.lite.bin",
+        "track_param_2":"track/enc_eye_int16.lite.bin",
+        "trackingSmoothAlpha":"0.03",
+        "trackingSmoothThreshold":"1",
+    },
+}

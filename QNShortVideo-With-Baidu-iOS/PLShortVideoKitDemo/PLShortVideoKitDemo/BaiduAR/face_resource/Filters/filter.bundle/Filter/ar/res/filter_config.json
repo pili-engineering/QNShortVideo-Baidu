@@ -1,0 +1,309 @@
+{
+    "start_filter_group_id": 500000,
+    "filter_group_set": [
+                         {
+                         "filter_group_id": 500000,
+                         "static":1,
+                         "disable_filter_group": 0,
+                         "reality_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [{
+                                       "pass_id": 1,
+                                       "pass_type": "beauty",
+                                       "sub_type": "skin",
+                                       "source_type": "picture",
+                                       "source_file_1": "/res/filter/new/beautySkinSmallvideo.png",
+                                       "source_file_2" : "/res/filter/new/beautySkinStream.png",
+                                       "params": {
+                                       "smooth": 0.35,
+                                       "whiten": 0.65
+                                       }
+                                       }
+]
+                         },
+                         "virtual_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": []
+                         },
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                             ]
+                         }
+                         },
+                         {
+                         "filter_group_id": 500034,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/huiyi.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }
+                                       ]
+                         }
+                         
+                         },
+                         {
+                         "filter_group_id": 500035,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/shaonv.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }
+                                       ]
+                         }
+                         },
+                         
+                         {
+                         "filter_group_id": 500036,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/hongrun.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }
+                                       ]
+                         }
+                         },
+                         {
+                         "filter_group_id": 500037,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/urban.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }
+                                       ]
+                         }
+                         },
+                         {
+                         "filter_group_id": 500038,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/weiguang.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }
+                                       ]
+                         }
+                         },
+                         {
+                         "filter_group_id": 500039,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/hongchun.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }
+                                       ]
+                         }
+                         },
+                         {
+                             "filter_group_id": 500040,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/dou_baixi.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500041,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/huo_baixi.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500042,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/huo_chuxia.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500043,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/huo_qingcao.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500044,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/huo_weimei.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500045,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/ji_baixi.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500046,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/ji_shuinen.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                             "filter_group_id": 500047,
+                             "disable_filter_group": 0,
+                             "mix_target": {
+                                 "disable_pass_list": 0,
+                                 "pass_list": [
+                                     {
+                                         "pass_id": 3,
+                                         "pass_type": "mask_blend",
+                                         "sub_type": "look_up",
+                                         "source_type": "picture",
+                                         "source_file": "/res/filter/new/ji_weiguang.png",
+                                         "params": {
+                                             "dimension": "64"
+                                         }
+                                     }]
+                             }
+                         },
+                         {
+                         "filter_group_id": 500001,
+                         "disable_filter_group": 0,
+                         "mix_target": {
+                         "disable_pass_list": 0,
+                         "pass_list": [
+                                       {
+                                       "pass_id": 3,
+                                       "pass_type": "mask_blend",
+                                       "sub_type": "look_up",
+                                       "source_type": "picture",
+                                       "source_file": "/res/filter/new/normal.png",
+                                       "params": {
+                                       "dimension": "64"
+                                       }
+                                       }]
+                         }
+                         },
+                         ]
+}
+
+
